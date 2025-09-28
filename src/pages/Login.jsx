@@ -1,7 +1,5 @@
-// src/pages/Login.js
-
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { apiRoutes } from "../config.js";
@@ -11,10 +9,18 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [scheduleMessage, setScheduleMessage] = useState(null); // store schedule info
+
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    if (!email || !password) {
+      toast.error("Please fill all fields");
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -25,23 +31,53 @@ function Login() {
       });
 
       const data = await res.json();
+      console.log("Login response:", data);
 
       if (!res.ok) {
+        // special case: call required
+        if (data.schedule) {
+          setScheduleMessage(data);
+          return;
+        }
+        // normal error
         throw new Error(data.error || "Login failed");
       }
 
-      // Optional: Save token or user info
-      localStorage.setItem("token", data.token);
+      // success
       toast.success("Login successful!");
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem("authToken", data.authToken);
 
-      // Redirect to dashboard or home page
-      setTimeout(() => navigate("/dashboard"), 1500);
+      setTimeout(() => navigate("/dashboard"), 1000);
     } catch (err) {
       toast.error(err.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
   };
+
+  // Show call/schedule message instead of login form
+  if (scheduleMessage) {
+    return (
+      <main className="home-page-container">
+        <section className="login-form">
+          <div className="info-card">
+            <h2>Action Required</h2>
+            <p>{scheduleMessage.error}</p>
+            <p>
+              <strong>Scheduled Call:</strong> {scheduleMessage.schedule.date} at {scheduleMessage.schedule.time}
+            </p>
+            <p>
+              <a href={scheduleMessage.schedule.link} target="_blank" rel="noopener noreferrer">
+                Join Call
+              </a>
+            </p>
+            <button onClick={() => setScheduleMessage(null)}>Back to Login</button>
+          </div>
+        </section>
+      </main>
+    );
+  }
 
   return (
     <main className="home-page-container">
@@ -69,8 +105,14 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <Link to="/signup" className="signup-director">Don't have an account?</Link>
-          <button type="submit">Login</button>
+
+          <button type="submit" disabled={loading}>
+            {loading ? "Logging in..." : "Login"}
+          </button>
+
+          <p>
+            Don't have an account? <span onClick={() => navigate("/signup")} style={{ color: "#4CAF50", cursor: "pointer" }}>Sign Up</span>
+          </p>
         </form>
       </section>
 
