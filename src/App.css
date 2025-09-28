@@ -4,3 +4,7 @@
   --s-color: #f45d48;  
   --b-color: black; 
 }
+html,body{
+  height: 100%;
+  width: 100%;  
+}

@@ -4,6 +4,8 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { apiRoutes } from "../config.js";
 import "./Login-Signup.css";
+import { FaArrowLeft } from "react-icons/fa";
+import {Link} from 'react-router-dom'; 
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -59,10 +61,16 @@ function Login() {
       <main className="home-page-container">
         <section className="login-form">
           <div className="info-card">
-            <h2>Attention Required</h2>
-            <p>{scheduleMessage.error}</p>
+            <div className="attention-head">
+              <Link to="/" onClick={window.location.reload}>
+                <FaArrowLeft size={24} color="#88b89b" className="attention-back-icon" />
+              </Link>
+              <h1>Attention Required</h1>
+              <div className="space-filler"></div>
+            </div>
+            <p className="schedule_message">{scheduleMessage.error}</p>
             <p>
-              <strong>Scheduled Call:</strong> {scheduleMessage.schedule.date} at{" "}
+              <strong>Scheduled Call:</strong>        {scheduleMessage.schedule.date} at{" "}
               {scheduleMessage.schedule.time}
             </p>
             <button
@@ -115,14 +123,12 @@ function Login() {
             {loading ? "Logging in..." : "Login"}
           </button>
 
-          <p>
-            Don't have an account?{" "}
+          <p className="signup-director">
+            Don't have an account?
             <span
               onClick={() => navigate("/signup")}
               style={{ color: "#4CAF50", cursor: "pointer" }}
-            >
-              Sign Up
-            </span>
+            > Sign Up </span>
           </p>
         </form>
       </section>
