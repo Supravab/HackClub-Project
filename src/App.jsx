@@ -2,12 +2,13 @@ import './App.css';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import VerifyOtp from './pages/VerifyOtp.jsx';
-import Sessions from './pages/Sessions.jsx';
+import VerifyOtp from './pages/VerifyOtp';
 import UserProfile from './pages/UserProfile.jsx';
+import JoinSession from './pages/JoinSession';
+import Sessions from './pages/Sessions.jsx';
 import Explore from './pages/explore';
+const user = 'user';
 function App() {
-	const user = 'user';
 	return (
 		<Router>
 			<Routes>
@@ -15,6 +16,7 @@ function App() {
 				<Route path="/login" element={<Login />} />
 				<Route path="/sessions" element={<Sessions type={user} />} />
 				<Route path="/explore" element={<Explore />} />
+				<Route path="/join-session" element={<JoinSession />} />
 				<Route path="/signup" element={<Signup />} />
 				<Route path="/otp" element={<VerifyOtp />} />
 				<Route path="*" element={<Login />} />
@@ -22,5 +24,4 @@ function App() {
 		</Router>
 	);
 }
-
 export default App;
