@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import Nav from '../components/Nav.jsx';
 import './sessions.css';
 import { FaTrash } from 'react-icons/fa';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root'); // accessibility requirement
 
 function Sessions({ type }) {
 	const navigate = useNavigate();
@@ -35,10 +38,20 @@ function Sessions({ type }) {
 		},
 	]);
 
+	// Modal state
+	const [selectedSession, setSelectedSession] = useState(null);
+
 	const handleDelete = (sessionId) => {
-		// Filter out the session with the given id
 		const updatedSessions = sessions.filter((s) => s.id !== sessionId);
 		setSessions(updatedSessions);
+	};
+
+	const openDetails = (session) => {
+		setSelectedSession(session);
+	};
+
+	const closeModal = () => {
+		setSelectedSession(null);
 	};
 
 	return (
@@ -54,7 +67,7 @@ function Sessions({ type }) {
 							<div key={session.id} className="session-card">
 								{type === 'volunteer' && (
 									<div
-										className="delete-icon"
+										className="deletem-icon"
 										onClick={() => handleDelete(session.id)}
 									>
 										<FaTrash color="#f44336" />
@@ -83,12 +96,7 @@ function Sessions({ type }) {
 									</button>
 									<button
 										className="detail-btn"
-										onClick={() =>
-											console.log(
-												'View details',
-												session.id
-											)
-										}
+										onClick={() => openDetails(session)}
 									>
 										Details
 									</button>
@@ -99,6 +107,39 @@ function Sessions({ type }) {
 						<p>No sessions available</p>
 					)}
 				</div>
+
+				{/* Modal */}
+
+				<Modal
+					isOpen={!!selectedSession}
+					onRequestClose={closeModal}
+					className="modal-content"
+					overlayClassName="modal-overlay"
+				>
+					{selectedSession && (
+						<div>
+							<h2>{selectedSession.name}</h2>
+							<p>
+								<strong>Category:</strong>{' '}
+								{selectedSession.category}
+							</p>
+							<p>
+								<strong>Language:</strong>{' '}
+								{selectedSession.language}
+							</p>
+							<p>
+								<strong>Time:</strong> {selectedSession.time}
+							</p>
+							<p>
+								<strong>Status:</strong>{' '}
+								{selectedSession.status}
+							</p>
+							<button className="close-btn" onClick={closeModal}>
+								Close
+							</button>
+						</div>
+					)}
+				</Modal>
 			</div>
 		</div>
 	);

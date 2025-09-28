@@ -26,11 +26,11 @@
 
 /* Left side image */
 .mental-health-img {
+	background:white;
   flex: 0 0 auto; /* Don't grow or shrink */
   display: flex;
   align-items: center;
   justify-content: center;
-  background:transparent; 
   padding: 2rem;
   width: 50%; /* Match the form max-width */
   min-height: 100vh;
@@ -42,7 +42,6 @@
   
   object-fit: contain;
   border-radius: var(--border-radius);
-  background: transparent;
 }
 
 /* Right side login form */

@@ -15,7 +15,7 @@ function App() {
 				<Route path="/profile" element={<UserProfile type={user} />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/sessions" element={<Sessions type={user} />} />
-				<Route path="/explore" element={<Explore />} />
+				<Route path="/explore" element={<Explore type={user} />} />
 				<Route path="/join-session" element={<JoinSession />} />
 				<Route path="/signup" element={<Signup />} />
 				<Route path="/otp" element={<VerifyOtp />} />
