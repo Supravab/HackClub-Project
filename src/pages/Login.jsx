@@ -1,14 +1,46 @@
+// src/pages/Login.js
+
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { apiRoutes } from "../config.js";
 import "./Login-Signup.css";
-import { Link } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("Email:", email, "Password:", password);
+    setLoading(true);
+
+    try {
+      const res = await fetch(apiRoutes.auth.login, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Login failed");
+      }
+
+      // Optional: Save token or user info
+      localStorage.setItem("token", data.token);
+      toast.success("Login successful!");
+
+      // Redirect to dashboard or home page
+      setTimeout(() => navigate("/dashboard"), 1500);
+    } catch (err) {
+      toast.error(err.message || "Something went wrong");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -41,6 +73,16 @@ function Login() {
           <button type="submit">Login</button>
         </form>
       </section>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+      />
     </main>
   );
 }
