@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { FaBullseye } from 'react-icons/fa';
+import { FaBookOpen } from 'react-icons/fa';
 import Nav from '../components/Nav.jsx';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header.jsx';
@@ -249,19 +251,35 @@ function UserProfile(type) {
 								<h2>Show / Check Results</h2>
 
 								<div className="form-group">
-									<label htmlFor="category">Category:</label>
-									<label htmlFor="category">jAnxiety</label>
+									<label htmlFor="category">
+										Category:{' '}
+										<span className="R-icon">
+											<FaBullseye
+												color="black"
+												className="me-2 text-align-center align-items-center"
+											/>
+											<i>Anxiety</i>
+										</span>
+									</label>
 								</div>
 
 								<div className="form-group">
-									<label htmlFor="language">Language:</label>
-									<label htmlFor="language">English</label>
+									<label htmlFor="language">
+										Language:
+										<span className="R-icon">
+											<FaBookOpen
+												color="black"
+												className="me-2 text-align-center align-items-center"
+											/>
+											<i>English</i>
+										</span>
+									</label>
 								</div>
 								<div className="form-group">
 									<label htmlFor="language">
 										Date of Diagnosis:
+										<i className="R-icon">2082-03-01</i>
 									</label>
-									<label htmlFor="language">2082-03-01</label>
 								</div>
 							</div>
 						)}
