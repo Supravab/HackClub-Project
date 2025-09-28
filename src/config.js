@@ -1,7 +1,6 @@
 // src/config/api.js
 
 const baseUrl = 'https://daydreambackend.onrender.com/api';
-// const baseUrl ="http://localhost:4000/api";
 
 const v1Api = `${baseUrl}/v1`;
 

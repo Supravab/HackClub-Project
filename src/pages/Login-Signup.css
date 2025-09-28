@@ -119,7 +119,17 @@
 .signup-director{
   margin: 0 20%;
 }
-
+.name-age-container{
+  display: flex;
+  justify-content: space-between;
+}
+.name-container, .age-container{
+  display: flex;
+  flex-direction: column;
+}
+.age-container{
+  width: 30%;
+}
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .home-page-container {
