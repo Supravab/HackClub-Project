@@ -4,8 +4,9 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import VerifyOtp from './pages/verifyOtp'
+import JoinSession from './pages/JoinSession'
+
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <Router>
@@ -13,6 +14,7 @@ function App() {
          <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/otp" element={<VerifyOtp />} />
+        <Route path="/join-session" element={<JoinSession />} />
         <Route path='*' element={<Login />} />
       </Routes>
     </Router>
