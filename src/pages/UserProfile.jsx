@@ -2,36 +2,38 @@ import { useState } from 'react';
 import Nav from '../components/Nav.jsx';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header.jsx';
-import LogoutButton from '../components/LogoutButton.jsx';
 import './userprofile.css';
 
-const sampleSessions = [
-	{
-		id: 1,
-		category: 'Students',
-		language: 'Nepali',
-		time: '10:00 AM',
-		status: 'Upcoming',
-	},
-	{
-		id: 2,
-		category: "Migrants' Wives",
-		language: 'Maithili',
-		time: '11:30 AM',
-		status: 'Upcoming',
-	},
-];
+const sampleSessions = [];
 function UserProfile(type) {
+	const [sessions, setSessions] = useState(sampleSessions);
 	const navigate = useNavigate();
 	const [activeTab, setActiveTab] = useState('join');
 	const [selectedCategory, setSelectedCategory] = useState('');
 	const [selectedLanguage, setSelectedLanguage] = useState('');
-	const [feedback, setFeedback] = useState('');
 	const [message, setMessage] = useState('');
 	const userData = JSON.parse(localStorage.getItem('userData')) || {
 		name: 'Guest',
 		email: 'rijangautam@gmail.com',
 	};
+	const [sessionName, setSessionName] = useState('');
+
+	const handleCreateSession = () => {
+		const newSession = {
+			id: Date.now(),
+			name: sessionName, // session name from input
+			category: selectedCategory,
+			language: selectedLanguage,
+			time: 'To Be Scheduled',
+			status: 'Upcoming',
+		};
+
+		setSessions([...sessions, newSession]); // add new session to state
+		setSessionName(''); // clear input
+		setSelectedCategory(''); // optional: clear select
+		setSelectedLanguage(''); // optional: clear select
+	};
+
 	// const userData = JSON.parse(localStorage.getItem('userData'));
 	if (type.type == 'volunteer')
 		return (
@@ -41,7 +43,7 @@ function UserProfile(type) {
 						<Header />
 
 						<div className="nav-container">
-							<Nav id={type.type} />
+							<Nav />
 						</div>
 					</div>
 					<div className="profile-card">
@@ -73,7 +75,7 @@ function UserProfile(type) {
 								}}
 							>
 								{tab === 'join'
-									? 'Join Peer Group'
+									? 'Create Sessions'
 									: 'Scheduled Sessions'}
 							</button>
 						))}
@@ -91,7 +93,15 @@ function UserProfile(type) {
 									<label htmlFor="category">
 										Session Name:
 									</label>
-									<input type="text" required />
+									<input
+										type="text"
+										id="sessionName"
+										value={sessionName}
+										onChange={(e) =>
+											setSessionName(e.target.value)
+										}
+										required
+									/>
 								</div>
 								<div className="form-group">
 									<label htmlFor="category">Category:</label>
@@ -139,7 +149,7 @@ function UserProfile(type) {
 
 								<button
 									className="primary-btn"
-									onClick={() => navigate('/call')}
+									onClick={handleCreateSession}
 									disabled={
 										!selectedCategory || !selectedLanguage
 									}
@@ -152,12 +162,13 @@ function UserProfile(type) {
 						{activeTab === 'sessions' && (
 							<div className="sessions-section">
 								<h2>Scheduled Sessions</h2>
-								{sampleSessions.map((session) => (
+								{sessions.map((session) => (
 									<div
 										key={session.id}
 										className="session-card"
 									>
 										<div className="session-header">
+											<span>{session.name}</span>
 											<span>{session.category}</span>
 											<span className="session-time">
 												{session.time}
@@ -224,7 +235,7 @@ function UserProfile(type) {
 							>
 								{tab === 'join'
 									? 'Diagnosis Result'
-									: 'Scheduled Sessions'}
+									: 'Private Sessions'}
 							</button>
 						))}
 					</div>
@@ -235,7 +246,7 @@ function UserProfile(type) {
 						)}
 						{activeTab === 'join' && (
 							<div className="join-section">
-								<h2>Select / Join Group</h2>
+								<h2>Show / Check Results</h2>
 
 								<div className="form-group">
 									<label htmlFor="category">Category:</label>
