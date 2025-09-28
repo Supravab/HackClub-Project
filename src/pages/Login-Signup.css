@@ -30,7 +30,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--p-color) 0%, #a8d5ba 100%);
+  background:transparent; 
   padding: 2rem;
   width: 50%; /* Match the form max-width */
   min-height: 100vh;
@@ -38,13 +38,11 @@
 
 
 .mental-health-img img {
-  max-width: 70%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
+  height: 100%;
+  
   object-fit: contain;
   border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
+  background: transparent;
 }
 
 /* Right side login form */

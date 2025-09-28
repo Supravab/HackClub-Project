@@ -39,7 +39,7 @@ function Signup() {
         body: JSON.stringify({ name, email, password, age }),
       });
 
-      let data;
+      let   data;
       try {
         data = await res.json(); // parse JSON
       } catch (err) {
