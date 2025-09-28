@@ -87,8 +87,7 @@ function Login() {
 
       <section className="login-form">
         <form onSubmit={handleLogin}>
-          <h2>Login Here!</h2>
-
+          <h1>Login Here!</h1>
           <label>Email</label>
           <input
             type="email"
