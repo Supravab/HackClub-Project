@@ -1,0 +1,43 @@
+
+/* Import a scribbly/pop-style font */
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+/* Root colors */
+:root {
+  --main-color: #88B89B;
+  --s-color: #f45d48;
+  --bg-color: #f0f0f0;
+}
+
+/* Main container for the Mero Sathi title */
+
+
+/* Mero Sathi title */
+.merosathi-container{
+	align-items:center;
+}
+.merosathi-title {
+  font-family: 'Permanent Marker', cursive; /* Poppy / scribbly font */
+  font-size: 2rem;
+  color: var(--main-color);
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  line-height: 1;
+  transition: all 0.3s ease;
+  text-shadow: 3px 3px 0 var(--s-color), 6px 6px 0 rgba(0,0,0,0.1);
+}
+
+/* Hover effect */
+.merosathi-title:hover {
+  transform: rotate(-2deg) scale(1.05);
+  text-shadow: 4px 4px 0 var(--s-color), 8px 8px 0 rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .merosathi-title {
+    font-size: 3rem;
+  }
+}
