@@ -4,6 +4,7 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import VerifyOtp from './pages/verifyOtp'
+import UserProfile from './pages/UserProfile.jsx';
 import JoinSession from './pages/JoinSession'
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
       </Routes>
     </Router>
   )
+
 }
 
-export default App
+export default App;
