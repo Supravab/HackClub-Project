@@ -1,0 +1,52 @@
+
+.sessions-page {
+  padding: 1rem;
+}
+
+.session-card {
+  position: relative;
+  border: 1px solid #ddd;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.delete-icon {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  cursor: pointer;
+}
+
+.session-info {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+}
+
+.session-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.join-btn {
+  background-color: #f45d48;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.detail-btn {
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}

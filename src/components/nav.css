@@ -22,6 +22,8 @@ body{
 .nav-container{
 	width: fix-content;
 	margin: auto;
+	display:flex;
+	flex-direction:column;
 }
 
 .container {
@@ -31,13 +33,13 @@ body{
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  padding: 0.5em;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .buttn {
-  padding: 0.5em 1.5em;
   color: var(--accent);
   cursor: pointer;
   font-weight: 600;
@@ -112,7 +114,7 @@ padding: 10px;
   }
 
   .buttn {
-    padding: 0.75em 2em;
+    padding: 0.75em 1em;
 font-weight: bold;
     font-size: 1.2rem;
   }
