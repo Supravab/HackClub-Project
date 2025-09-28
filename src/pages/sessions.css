@@ -3,6 +3,59 @@
   padding: 1rem;
 }
 
+/* Modal overlay (background dim) */
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Modal box itself */
+.modal-content {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  outline: none;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+/* Close button */
+.close-btn {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background: #f45d48;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.close-btn:hover {
+  background: #d94c3b;
+}
+
+/* Animation for modal */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 .session-card {
   position: relative;
   border: 1px solid #ddd;
@@ -14,13 +67,19 @@
   gap: 0.5rem;
 }
 
-.delete-icon {
+.deletem-icon {
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
+  top: -0.5rem !important;
+  right: -0.5rem !important;
   cursor: pointer;
 }
 
+.delete-icon {
+  position: absolute;
+  top: -0.5rem ;
+  right: -0.5rem;
+  cursor: pointer;
+}
 .session-info {
   display: flex;
   justify-content: space-between;
