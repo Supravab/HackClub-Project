@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Login-Signup.css";
+import { Link } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -36,7 +37,7 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <p>Don't have an accout?</p>
+          <Link to="/signup">Don't have an account?</Link>
           <button type="submit">Login</button>
         </form>
       </section>
