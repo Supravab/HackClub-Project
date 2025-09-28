@@ -19,7 +19,7 @@ function Login() {
 
       <section className="login-form">
         <form onSubmit={handleLogin}>
-          <h2>Login Here!</h2>
+          <h1>Login Here!</h1>
           <label>Email</label>
           <input
             type="email"
@@ -37,7 +37,7 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <Link to="/signup">Don't have an account?</Link>
+          <Link to="/signup" className="signup-director">Don't have an account?</Link>
           <button type="submit">Login</button>
         </form>
       </section>

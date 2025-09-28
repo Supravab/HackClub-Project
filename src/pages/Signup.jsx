@@ -26,7 +26,7 @@ function Signup() {
 
       <section className="login-form">
         <form onSubmit={handleSignup}>
-          <h2>Sign Up Here!</h2>
+          <h1>Sign Up Here!</h1>
 
           <label>Name</label>
           <input
