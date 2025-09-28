@@ -1,6 +1,5 @@
-import { useState } from 'react';
-import { FaBullseye } from 'react-icons/fa';
-import { FaBookOpen } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
+import { FaBullseye, FaBookOpen } from 'react-icons/fa';
 import Nav from '../components/Nav.jsx';
 import { useNavigate } from 'react-router-dom';
 import './userprofile.css';
@@ -169,7 +168,7 @@ function UserProfile(type) {
         <div className="content-wrapper">
           <div className="hadder d-flex justify-content-between">
             <div className="nav-container">
-              <Nav id={type.type} />
+              <Nav />
             </div>
           </div>
 
@@ -182,7 +181,6 @@ function UserProfile(type) {
               <h3>
                 Email: <span className="highlight">{userData.email}</span>
               </h3>
-              
             </div>
           </div>
 
@@ -208,57 +206,56 @@ function UserProfile(type) {
               <div className="join-section">
                 <h2>Show / Check Results</h2>
 
-								<div className="form-group">
-									<label htmlFor="category">
-										Category:{' '}
-										<span className="R-icon">
-											<FaBullseye
-												color="black"
-												className="me-2 text-align-center align-items-center"
-											/>
-											<i>Anxiety</i>
-										</span>
-									</label>
-								</div>
+                <div className="form-group">
+                  <label>
+                    Category:{' '}
+                    <span className="R-icon">
+                      <FaBullseye
+                        color="black"
+                        className="me-2 text-align-center align-items-center"
+                      />
+                      <i>{userData.category || 'Anxiety'}</i>
+                    </span>
+                  </label>
+                </div>
 
-								<div className="form-group">
-									<label htmlFor="language">
-										Language:
-										<span className="R-icon">
-											<FaBookOpen
-												color="black"
-												className="me-2 text-align-center align-items-center"
-											/>
-											<i>English</i>
-										</span>
-									</label>
-								</div>
-								<div className="form-group">
-									<label htmlFor="language">
-										Date of Diagnosis:
-										<i className="R-icon">2082-03-01</i>
-									</label>
-								</div>
-							</div>
-						)}
-						{activeTab === 'sessions' && (
-							<div className="sessions-section">
-								<h2>Scheduled Sessions</h2>
-								<button
-									onClick={() => navigate('/call')}
-									className="join-btn"
-								>
-									👑 Buy Subscription for Private Sessions 👑
-								</button>
-							</div>
-						)}{' '}
-					</div>
-				</div>
-			</div>
-		);
-	else {
-		return console.error(type.type + ' is not a valid user');
-	}
+                <div className="form-group">
+                  <label>
+                    Language:{' '}
+                    <span className="R-icon">
+                      <FaBookOpen
+                        color="black"
+                        className="me-2 text-align-center align-items-center"
+                      />
+                      <i>{userData.language || 'English'}</i>
+                    </span>
+                  </label>
+                </div>
+
+                <div className="form-group">
+                  <label>
+                    Date of Diagnosis: <i className="R-icon">{userData.diagnosisDate || '2082-03-01'}</i>
+                  </label>
+                </div>
+              </div>
+            )}
+
+            {activeTab === 'sessions' && (
+              <div className="sessions-section">
+                <h2>Scheduled Sessions</h2>
+                <button onClick={() => navigate('/call')} className="join-btn">
+                  👑 Buy Subscription for Private Sessions 👑
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+    console.error(type.type + ' is not a valid user');
+    return null;
+  }
 }
 
 export default UserProfile;

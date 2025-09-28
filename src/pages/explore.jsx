@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import Header from '../components/Header.jsx';
 import Nav from '../components/Nav.jsx';
 import './explore.css';
 
@@ -54,7 +53,6 @@ function Explore(type) {
 
 	return (
 		<div className="page-container">
-			<Header />
 			<Nav />
 
 			<div className="explore-page">
