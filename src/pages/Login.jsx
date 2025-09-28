@@ -4,12 +4,14 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { apiRoutes } from "../config.js";
 import "./Login-Signup.css";
+import { FaArrowLeft } from "react-icons/fa";
+import {Link} from 'react-router-dom'; 
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [scheduleMessage, setScheduleMessage] = useState(null); // store schedule info
+  const [scheduleMessage, setScheduleMessage] = useState(null);
 
   const navigate = useNavigate();
 
@@ -34,20 +36,17 @@ function Login() {
       console.log("Login response:", data);
 
       if (!res.ok) {
-        // special case: call required
         if (data.schedule) {
-          setScheduleMessage(data);
+          setScheduleMessage(data); // show scheduled call
           return;
         }
-        // normal error
         throw new Error(data.error || "Login failed");
       }
 
-      // success
+      // success login
       toast.success("Login successful!");
       localStorage.setItem("userEmail", email);
       localStorage.setItem("authToken", data.authToken);
-
       setTimeout(() => navigate("/dashboard"), 1000);
     } catch (err) {
       toast.error(err.message || "Something went wrong");
@@ -56,22 +55,35 @@ function Login() {
     }
   };
 
-  // Show call/schedule message instead of login form
+  // --- Attention Required / Scheduled Call Section ---
   if (scheduleMessage) {
     return (
       <main className="home-page-container">
         <section className="login-form">
           <div className="info-card">
-            <h2>Action Required</h2>
-            <p>{scheduleMessage.error}</p>
+            <div className="attention-head">
+              <Link to="/" onClick={window.location.reload}>
+                <FaArrowLeft size={24} color="#88b89b" className="attention-back-icon" />
+              </Link>
+              <h1>Attention Required</h1>
+              <div className="space-filler"></div>
+            </div>
+            <p className="schedule_message">{scheduleMessage.error}</p>
             <p>
-              <strong>Scheduled Call:</strong> {scheduleMessage.schedule.date} at {scheduleMessage.schedule.time}
+              <strong>Scheduled Call:</strong>        {scheduleMessage.schedule.date} at{" "}
+              {scheduleMessage.schedule.time}
             </p>
-            <p>
-              <a href={scheduleMessage.schedule.link} target="_blank" rel="noopener noreferrer">
-                Join Call
-              </a>
-            </p>
+            <button
+              onClick={() => {
+                localStorage.setItem(
+                  "meetingLink",
+                  scheduleMessage.schedule.link
+                );
+                navigate("/join-session");
+              }}
+            >
+              Join Call
+            </button>
             <button onClick={() => setScheduleMessage(null)}>Back to Login</button>
           </div>
         </section>
@@ -79,6 +91,7 @@ function Login() {
     );
   }
 
+  // --- Normal Login Form ---
   return (
     <main className="home-page-container">
       <section className="mental-health-img">
@@ -110,8 +123,12 @@ function Login() {
             {loading ? "Logging in..." : "Login"}
           </button>
 
-          <p>
-            Don't have an account? <span onClick={() => navigate("/signup")} style={{ color: "#4CAF50", cursor: "pointer" }}>Sign Up</span>
+          <p className="signup-director">
+            Don't have an account?
+            <span
+              onClick={() => navigate("/signup")}
+              style={{ color: "#4CAF50", cursor: "pointer" }}
+            > Sign Up </span>
           </p>
         </form>
       </section>

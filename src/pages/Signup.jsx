@@ -131,7 +131,15 @@ function Signup() {
           <button type="submit" disabled={loading}>
             {loading ? "Signing up..." : "Sign Up"}
           </button>
+          <p className="signup-director">
+            Already Have an account?{" "}
+            <span
+              onClick={() => navigate("/")}
+              style={{ color: "#4CAF50", cursor: "pointer"}}
+            > Log In</span>
+          </p>
         </form>
+
       </section>
 
       <ToastContainer
