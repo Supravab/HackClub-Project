@@ -8,7 +8,10 @@ function App() {
 	return (
 		<Router>
 			<Routes>
-				<Route path="/profile" element={<UserProfile type="user" />} />
+				<Route
+					path="/profile"
+					element={<UserProfile type="volunteer" />}
+				/>
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
 				<Route path="/otp" element={<VerifyOtp />} />
