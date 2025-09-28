@@ -1,6 +1,7 @@
 // src/config/api.js
 
-const baseUrl ="https://daydreambackend.onrender.com/api";
+// const baseUrl ="https://daydreambackend.onrender.com/api";
+const baseUrl ="http://localhost:4000/api";
 
 const v1Api = `${baseUrl}/v1`;
 
@@ -9,7 +10,7 @@ export const apiRoutes = {
   auth: {
     login: `${v1Api}/login`,
     signup: `${v1Api}/signup`,
-    validateOtp: `${v1Api}/validate`,
+    validateOtp: `${v1Api}/signup/validate`,
     resetRequest: `${v1Api}/reset/request`,//requires email
     verifyOtp: `${v1Api}/reset/verify`,//requires email , otp and new password || validate the password twice
     updatePassword: `${v1Api}/update`,
