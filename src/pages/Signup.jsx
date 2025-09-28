@@ -50,7 +50,9 @@ function Signup() {
 
       // Success: res.ok and no error field
       if (res.ok && !data.error) {
-        toast.success(data.message || "Signup successful! OTP sent to your email.");
+        toast.success(
+          data.message || "Signup successful! OTP sent to your email."
+        );
         localStorage.setItem("signupEmail", email);
 
         setTimeout(() => navigate("/otp"), 1500);
@@ -76,16 +78,29 @@ function Signup() {
       <section className="login-form">
         <form onSubmit={handleSignup}>
           <h1>Sign Up Here!</h1>
-
-          <label>Name</label>
-          <input
-            type="text"
-            placeholder="Enter your name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-
+          <div className="name-age-container">
+            <div className="name-container">
+              <label>Name</label>
+              <input
+                type="text"
+                placeholder="Enter your name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
+            <div className="age-container">
+              <label>Age</label>
+              <input
+                type="number"
+                placeholder=""
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+                required
+                min={1}
+              />
+            </div>
+          </div>
           <label>Email</label>
           <input
             type="email"
@@ -93,16 +108,6 @@ function Signup() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-          />
-
-          <label>Age</label>
-          <input
-            type="number"
-            placeholder="Enter your age"
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
-            required
-            min={1}
           />
 
           <label>Password</label>
