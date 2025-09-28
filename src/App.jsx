@@ -7,6 +7,7 @@ import UserProfile from './pages/UserProfile.jsx';
 import JoinSession from './pages/JoinSession';
 import Sessions from './pages/Sessions.jsx';
 import Explore from './pages/explore';
+import NotFound from './components/404.jsx';
 const user = 'user';
 function App() {
 	return (
@@ -19,7 +20,7 @@ function App() {
 				<Route path="/join-session" element={<JoinSession />} />
 				<Route path="/signup" element={<Signup />} />
 				<Route path="/otp" element={<VerifyOtp />} />
-				<Route path="*" element={<Login />} />
+				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</Router>
 	);

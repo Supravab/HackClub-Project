@@ -19,7 +19,7 @@
 
 /* Modal box itself */
 .modal-content {
-  background: #fff;
+  background: #fff !important;
   border-radius: 12px;
   padding: 20px;
   max-width: 400px;

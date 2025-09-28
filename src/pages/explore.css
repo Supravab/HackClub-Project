@@ -1,14 +1,37 @@
 
-.explore-page {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+.page-container {
+  min-height: 100vh;
 }
 
+.explore-page {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 2rem;
+  padding: 2rem;
+  width: 100vw; /* full viewport width */
+  box-sizing: border-box;
+}
+
+.stories-feed {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal columns across full width */
+  gap: 1rem;
+  width: 100%; /* ensure it uses full width */
+}
+
+.story-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  background-color: #fff;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 0.5rem;
+}
 .post-story {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 2rem;
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 0.5rem;
 }
 
 .post-story textarea {
@@ -17,11 +40,10 @@
   border-radius: 0.5rem;
   border: 1px solid #ccc;
   min-height: 100px;
-  margin-bottom: 0.5rem;
 }
 
 .post-btn {
-  align-self: flex-end;
+  justify-self: end;
   background-color: #f45d48;
   color: white;
   border: none;
@@ -30,30 +52,47 @@
   cursor: pointer;
 }
 
-.story-card {
-  border: 1px solid #e0e0e0;
-  border-radius: 0.75rem;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  background-color: #fff;
-}
-.delete-icon{
-	top:-30px;
-	right:-30px;
-}
-.dondisplay{
-	display:none;
-}
 .story-header {
-position:relative;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
   font-size: 0.85rem;
   color: #888;
-  margin-bottom: 0.5rem;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.story-author {
+  font-weight: 500;
+}
+
+.story-date {
+  justify-self: end;
+}
+
+.delete-icon {
+  justify-self: end;
+  cursor: pointer;
+}
+
+.dondisplay {
+  display: none;
 }
 
 .story-content {
   font-size: 1rem;
   line-height: 1.4;
 }
+
+@media (max-width: 1200px) {
+  .stories-feed {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .stories-feed {
+    grid-template-columns: 1fr; /* 1 column on mobile */
+  }
+}
+
