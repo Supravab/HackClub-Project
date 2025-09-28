@@ -1,26 +1,27 @@
-import { useState } from 'react'
-import './App.css'
-import Login from './pages/Login'
-import Signup from './pages/Signup'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import VerifyOtp from './pages/verifyOtp'
+import './App.css';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import VerifyOtp from './pages/VerifyOtp';
 import UserProfile from './pages/UserProfile.jsx';
-import JoinSession from './pages/JoinSession'
-
+import JoinSession from './pages/JoinSession';
+import Sessions from './pages/Sessions.jsx';
+import Explore from './pages/explore';
+const user = 'volunteer';
 function App() {
-
-  return (
-    <Router>
-      <Routes>
-         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/otp" element={<VerifyOtp />} />
-        <Route path="/join-session" element={<JoinSession />} />
-        <Route path='*' element={<Login />} />
-      </Routes>
-    </Router>
-  )
-
+	return (
+		<Router>
+			<Routes>
+				<Route path="/profile" element={<UserProfile type={user} />} />
+				<Route path="/login" element={<Login />} />
+				<Route path="/sessions" element={<Sessions type={user} />} />
+				<Route path="/explore" element={<Explore type={user} />} />
+				<Route path="/join-session" element={<JoinSession />} />
+				<Route path="/signup" element={<Signup />} />
+				<Route path="/otp" element={<VerifyOtp />} />
+				<Route path="*" element={<Login />} />
+			</Routes>
+		</Router>
+	);
 }
-
 export default App;
