@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { apiRoutes } from "../config.js";
 import "./Login-Signup.css";
 import { FaArrowLeft } from "react-icons/fa";
-import {Link} from 'react-router-dom'; 
+import { Link } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -33,7 +33,6 @@ function Login() {
       });
 
       const data = await res.json();
-      console.log("Login response:", data);
 
       if (!res.ok) {
         if (data.schedule) {
@@ -45,9 +44,14 @@ function Login() {
 
       // success login
       toast.success("Login successful!");
+
+      // 🔹 Store the full user data JSON in localStorage
+      localStorage.setItem("userData", JSON.stringify(data));
+      console.log(localStorage.getItem("userData"))
       localStorage.setItem("userEmail", email);
       localStorage.setItem("authToken", data.authToken);
-      setTimeout(() => navigate("/dashboard"), 1000);
+
+      setTimeout(() => navigate("/profile"), 1000);
     } catch (err) {
       toast.error(err.message || "Something went wrong");
     } finally {
@@ -63,14 +67,18 @@ function Login() {
           <div className="info-card">
             <div className="attention-head">
               <Link to="/" onClick={window.location.reload}>
-                <FaArrowLeft size={24} color="#88b89b" className="attention-back-icon" />
+                <FaArrowLeft
+                  size={24}
+                  color="#88b89b"
+                  className="attention-back-icon"
+                />
               </Link>
               <h1>Attention Required</h1>
               <div className="space-filler"></div>
             </div>
             <p className="schedule_message">{scheduleMessage.error}</p>
             <p>
-              <strong>Scheduled Call:</strong>        {scheduleMessage.schedule.date} at{" "}
+              <strong>Scheduled Call:</strong> {scheduleMessage.schedule.date} at{" "}
               {scheduleMessage.schedule.time}
             </p>
             <button
@@ -84,7 +92,9 @@ function Login() {
             >
               Join Call
             </button>
-            <button onClick={() => setScheduleMessage(null)}>Back to Login</button>
+            <button onClick={() => setScheduleMessage(null)}>
+              Back to Login
+            </button>
           </div>
         </section>
       </main>
@@ -128,7 +138,10 @@ function Login() {
             <span
               onClick={() => navigate("/signup")}
               style={{ color: "#4CAF50", cursor: "pointer" }}
-            > Sign Up </span>
+            >
+              {" "}
+              Sign Up{" "}
+            </span>
           </p>
         </form>
       </section>

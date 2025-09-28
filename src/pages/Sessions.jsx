@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Nav from '../components/Nav.jsx';
-import Header from '../components/Header.jsx';
 import './sessions.css';
 import { FaTrash } from 'react-icons/fa';
 
