@@ -33,8 +33,8 @@ function Login() {
 			});
 
 			const data = await res.json();
-			console.log('Login response:', data.user.type);
-			localStorage.setItem('userType', data.user.type);
+			// console.log('Login response:', data.user.type);
+			// localStorage.setItem('userType', data.user.type);
 
 			// handle errors
 
