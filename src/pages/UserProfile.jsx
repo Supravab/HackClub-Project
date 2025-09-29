@@ -34,11 +34,38 @@ function UserProfile(type) {
 		setSelectedLanguage(''); // optional: clear select
 	};
 
+	const goBack = () => navigate(-1);
+
 	// const userData = JSON.parse(localStorage.getItem('userData'));
 	if (type.type == "volunteer")
 		return (
 			<div className="page-container">
 				<div className="content-wrapper">
+					{/* Go Back Button */}
+					<button
+						className="go-back-btn"
+						onClick={goBack}
+						style={{
+							position: 'absolute',
+							top: '30px',
+							left: '30px',
+							background: 'linear-gradient(90deg, #6a11cb 0%, #2575fc 100%)',
+							color: '#fff',
+							border: 'none',
+							borderRadius: '30px',
+							padding: '10px 28px',
+							fontWeight: 'bold',
+							fontSize: '1rem',
+							boxShadow: '0 4px 16px rgba(106,17,203,0.15)',
+							cursor: 'pointer',
+							transition: 'background 0.3s, transform 0.2s',
+							zIndex: 10,
+						}}
+						onMouseOver={e => e.currentTarget.style.background = 'linear-gradient(90deg, #2575fc 0%, #6a11cb 100%)'}
+						onMouseOut={e => e.currentTarget.style.background = 'linear-gradient(90deg, #6a11cb 0%, #2575fc 100%)'}
+					>
+						← Go Back
+					</button>
 					<div className="hadder d-flex justify-content-between">
 						<Header />
 
@@ -198,6 +225,31 @@ function UserProfile(type) {
 		return (
 			<div className="page-container">
 				<div className="content-wrapper">
+					{/* Go Back Button */}
+					<button
+						className="go-back-btn"
+						onClick={goBack}
+						style={{
+							position: 'absolute',
+							top: '30px',
+							left: '30px',
+							background: 'linear-gradient(90deg, #6a11cb 0%, #2575fc 100%)',
+							color: '#fff',
+							border: 'none',
+							borderRadius: '30px',
+							padding: '10px 28px',
+							fontWeight: 'bold',
+							fontSize: '1rem',
+							boxShadow: '0 4px 16px rgba(106,17,203,0.15)',
+							cursor: 'pointer',
+							transition: 'background 0.3s, transform 0.2s',
+							zIndex: 10,
+						}}
+						onMouseOver={e => e.currentTarget.style.background = 'linear-gradient(90deg, #2575fc 0%, #6a11cb 100%)'}
+						onMouseOut={e => e.currentTarget.style.background = 'linear-gradient(90deg, #6a11cb 0%, #2575fc 100%)'}
+					>
+						← Go Back
+					</button>
 					<div className="hadder d-flex justify-content-between">
 						<Header />
 
