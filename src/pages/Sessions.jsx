@@ -57,7 +57,6 @@ function Sessions({ type }) {
 	return (
 		<div className="page-container">
 			<div className="content-wrapper">
-				<Header />
 				<Nav />
 
 				<div className="sessions-page">

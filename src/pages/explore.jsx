@@ -53,7 +53,8 @@ function Explore(type) {
 
 	return (
 		<div className="page-container">
-			<Nav />
+			<div className="nav-container"><Nav /></div>
+			
 
 			<div className="explore-page">
 				<h1>Inspiring Stories</h1>

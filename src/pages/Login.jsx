@@ -47,7 +47,7 @@ function Login() {
 			toast.success('Login successful!');
 			localStorage.setItem('userEmail', email);
 			localStorage.setItem('authToken', data.authToken);
-			setTimeout(() => navigate('/dashboard'), 1000);
+			setTimeout(() => navigate('/profile'), 1000);
 		} catch (err) {
 			toast.error(err.message || 'Something went wrong');
 		} finally {
