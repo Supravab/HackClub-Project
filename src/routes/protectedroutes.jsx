@@ -10,3 +10,4 @@ export default function ProtectedRoute({ children }) {
 
   return children; // Show protected component if authenticated
 }
+

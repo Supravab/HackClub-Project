@@ -1,6 +1,6 @@
 // src/config/api.js
 
-const baseUrl = 'http://localhost:4000/api';
+const baseUrl = 'http://localhost:5000/api';
 // const baseUrl = 'http://10.200.101.79:4000/api';
 
 const v1Api = `${baseUrl}/v1`;
