@@ -7,7 +7,7 @@ import UserProfile from './pages/UserProfile.jsx';
 import JoinSession from './pages/JoinSession';
 import Sessions from './pages/Sessions.jsx';
 import Explore from './pages/explore';
-const user = 'volunteer';
+const user = localStorage.getItem("userType");
 function App() {
 	return (
 		<Router>

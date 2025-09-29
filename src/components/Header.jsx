@@ -2,7 +2,7 @@ import './header.css';
 function Header() {
 	return (
 		<div className="merosathi-container">
-			<h1 className="merosathi-title">Mero Sathi</h1>
+			<h1 className="merosathi-title">Mero Sathee</h1>
 		</div>
 	);
 }

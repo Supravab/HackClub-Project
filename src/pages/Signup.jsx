@@ -17,57 +17,61 @@ function Signup() {
 
 	const navigate = useNavigate();
 
-	const handleSignup = async (e) => {
-		e.preventDefault();
+const handleSignup = async (e) => {
+  e.preventDefault();
 
-		if (password !== confirmPassword) {
-			toast.error('Passwords do not match!');
-			return;
-		}
+  if (password !== confirmPassword) {
+    toast.error("Passwords do not match!");
+    return;
+  }
 
-		if (!name || !email || !password || !age) {
-			toast.error('All fields are required!');
-			return;
-		}
+  if (!name || !email || !password || !age) {
+    toast.error("All fields are required!");
+    return;
+  }
 
-		setLoading(true);
+  setLoading(true);
 
-		try {
-			const res = await fetch(apiRoutes.auth.signup, {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ name, email, password, age }),
-			});
+  try {
+    const res = await fetch(apiRoutes.auth.signup, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, password, age }),
+    });
 
-			let data;
-			try {
-				data = await res.json(); // parse JSON
-			} catch (err) {
-				throw new Error('Invalid server response');
-			}
+    const data = await res.json();
+    console.log("Signup response:", res.status, data);
 
-			console.log('Signup response:', res.status, data); // Debug
+    if (res.ok && !data.error) {
+      toast.success(data.message || "Signup successful! OTP sent to your email.");
+      localStorage.setItem("signupEmail", email);
 
-			// Success: res.ok and no error field
-			if (res.ok && !data.error) {
-				toast.success(
-					data.message || 'Signup successful! OTP sent to your email.'
-				);
-				localStorage.setItem('signupEmail', email);
+      // AUTO CALL SCHEDULE API HERE
+      try {
+        const scheduleRes = await fetch(apiRoutes.volunteer.scheduleUser, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userId: data.user?.id }), // <-- your backend must return user id
+        });
+        const scheduleData = await scheduleRes.json();
+        console.log("Auto schedule response:", scheduleRes.status, scheduleData);
+      } catch (err) {
+        console.error("Auto scheduling failed:", err);
+      }
 
-				setTimeout(() => navigate('/otp'), 1500);
-				return;
-			}
+      setTimeout(() => navigate("/otp"), 1500);
+      return;
+    }
 
-			// Handle backend errors
-			throw new Error(data.error || data.message || 'Signup failed');
-		} catch (err) {
-			console.error('Signup error:', err);
-			toast.error(err.message || 'Something went wrong');
-		} finally {
-			setLoading(false);
-		}
-	};
+    throw new Error(data.error || data.message || "Signup failed");
+  } catch (err) {
+    console.error("Signup error:", err);
+    toast.error(err.message || "Something went wrong");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
 	return (
 		<main className="home-page-container">
@@ -93,7 +97,7 @@ function Signup() {
 							<label>Age</label>
 							<input
 								type="number"
-								placeholder=""
+								placeholder="Age"
 								value={age}
 								onChange={(e) => setAge(e.target.value)}
 								required

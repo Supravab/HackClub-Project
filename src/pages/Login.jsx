@@ -33,7 +33,10 @@ function Login() {
 			});
 
 			const data = await res.json();
-			console.log('Login response:', data);
+			console.log('Login response:', data.user.type);
+			localStorage.setItem('userType', data.user.type);
+
+			// handle errors
 
 			if (!res.ok) {
 				if (data.schedule) {
@@ -47,7 +50,7 @@ function Login() {
 			toast.success('Login successful!');
 			localStorage.setItem('userEmail', email);
 			localStorage.setItem('authToken', data.authToken);
-			setTimeout(() => navigate('/dashboard'), 1000);
+			setTimeout(() => navigate('/profile'), 1000);
 		} catch (err) {
 			toast.error(err.message || 'Something went wrong');
 		} finally {

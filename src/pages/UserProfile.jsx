@@ -35,7 +35,7 @@ function UserProfile(type) {
 	};
 
 	// const userData = JSON.parse(localStorage.getItem('userData'));
-	if (type.type == 'volunteer')
+	if (type.type == "volunteer")
 		return (
 			<div className="page-container">
 				<div className="content-wrapper">
@@ -56,7 +56,7 @@ function UserProfile(type) {
 								</span>
 							</h2>
 							<h3>
-								Email:{' '}
+								Email:{''}
 								<span className="highlight">
 									{userData.email}
 								</span>
@@ -250,7 +250,7 @@ function UserProfile(type) {
 
 								<div className="form-group">
 									<label htmlFor="category">Category:</label>
-									<label htmlFor="category">jAnxiety</label>
+									<label htmlFor="category">Anxiety</label>
 								</div>
 
 								<div className="form-group">

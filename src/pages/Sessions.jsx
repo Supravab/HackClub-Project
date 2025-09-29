@@ -16,10 +16,10 @@ function Sessions({ type }) {
 		{
 			id: 1,
 			name: 'Math Peer Group',
-			category: 'Students',
+			category: 'anxiety',
 			language: 'Nepali',
 			time: '10:00 AM',
-			status: 'Upcoming',
+			status: 'Expired',
 		},
 		{
 			id: 2,
@@ -91,7 +91,7 @@ function Sessions({ type }) {
 								<div className="session-buttons">
 									<button
 										className="join-btn"
-										onClick={() => navigate('/call')}
+										onClick={() => navigate('/join-session')}
 									>
 										Join
 									</button>
