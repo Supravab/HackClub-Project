@@ -29,6 +29,13 @@
   max-width: 600px;
 }
 
+.R-icon{
+	background: white;
+	margin-left: 10px;
+	padding:10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	border: 1px solid var(--btn-primary);
+}
 /* Profile Card */
 .profile-card {
   background-color: var(--card-bg);
@@ -52,6 +59,7 @@
 }
 
 .highlight {
+  font-weight: bold;
   color: var(--highlight);
 }
 
