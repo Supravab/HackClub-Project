@@ -15,7 +15,6 @@ function UserProfile(type) {
   const [message, setMessage] = useState('');
   const [sessionName, setSessionName] = useState('');
 
-  // Redirect to login if localStorage is empty
   useEffect(() => {
     const stored = localStorage.getItem('userData');
     if (!stored) {
@@ -23,7 +22,6 @@ function UserProfile(type) {
     }
   }, [navigate]);
 
-  // Parse userData from localStorage
   const userData = JSON.parse(localStorage.getItem('userData'))?.user || {};
 
   const handleCreateSession = () => {
@@ -46,12 +44,7 @@ function UserProfile(type) {
     return (
       <div className="page-container">
         <div className="content-wrapper">
-          <div className="hadder d-flex justify-content-between">
-            <div className="nav-container">
-              <Nav />
-            </div>
-          </div>
-
+			<Nav/>
           <div className="profile-card">
             <h1 className="profile-title">User Details:</h1>
             <div className="profile-info">
@@ -166,12 +159,7 @@ function UserProfile(type) {
     return (
       <div className="page-container">
         <div className="content-wrapper">
-          <div className="hadder d-flex justify-content-between">
-            <div className="nav-container">
-              <Nav />
-            </div>
-          </div>
-
+			<Nav/>
           <div className="profile-card">
             <h1 className="profile-title">User Details:</h1>
             <div className="profile-info">

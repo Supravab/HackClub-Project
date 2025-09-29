@@ -13,6 +13,13 @@
 }
 .nav .logo{ 
   width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.nav .logo img{
+  width: 100%;
 }
 .nav .nav-container{
   width: 75%;

@@ -14,6 +14,7 @@ function App() {
 		<Router>
 			<Routes>
 				<Route path="/profile" element={<UserProfile type={user} />} />
+				<Route path="/" element={<Login />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/sessions" element={<Sessions type={user} />} />
 				<Route path="/explore" element={<Explore type={user} />} />
